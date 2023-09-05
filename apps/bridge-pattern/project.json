@@ -1,22 +1,25 @@
 {
-  "name": "bridge",
+  "name": "bridge-pattern",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "sidel-pocs",
-  "sourceRoot": "apps/bridge/src",
+  "sourceRoot": "apps/bridge-pattern/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/bridge",
-        "index": "apps/bridge/src/index.html",
-        "main": "apps/bridge/src/main.ts",
+        "outputPath": "dist/apps/bridge-pattern",
+        "index": "apps/bridge-pattern/src/index.html",
+        "main": "apps/bridge-pattern/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/bridge/tsconfig.app.json",
-        "assets": ["apps/bridge/src/favicon.ico", "apps/bridge/src/assets"],
-        "styles": ["apps/bridge/src/styles.scss"],
+        "tsConfig": "apps/bridge-pattern/tsconfig.app.json",
+        "assets": [
+          "apps/bridge-pattern/src/favicon.ico",
+          "apps/bridge-pattern/src/assets"
+        ],
+        "styles": ["apps/bridge-pattern/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -50,10 +53,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "bridge:build:production"
+          "browserTarget": "bridge-pattern:build:production"
         },
         "development": {
-          "browserTarget": "bridge:build:development"
+          "browserTarget": "bridge-pattern:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -61,28 +64,17 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "bridge:build"
+        "browserTarget": "bridge-pattern:build"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/bridge/**/*.ts", "apps/bridge/**/*.html"]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/bridge/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "lintFilePatterns": [
+          "apps/bridge-pattern/**/*.ts",
+          "apps/bridge-pattern/**/*.html"
+        ]
       }
     }
   }
