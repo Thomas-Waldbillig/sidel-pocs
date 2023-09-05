@@ -11,10 +11,12 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Widget } from '../../models';
-import { WidgetFourComponent } from '../widget-four/widget-four.component';
-import { WidgetOneComponent } from '../widget-one/widget-one.component';
-import { WidgetThreeComponent } from '../widget-three/widget-three.component';
-import { WidgetTwoComponent } from '../widget-two/widget-two.component';
+import {
+  WidgetFourComponent,
+  WidgetOneComponent,
+  WidgetThreeComponent,
+  WidgetTwoComponent,
+} from '../widgets';
 
 @Component({
   selector: 'sp-widget-wrapper',
