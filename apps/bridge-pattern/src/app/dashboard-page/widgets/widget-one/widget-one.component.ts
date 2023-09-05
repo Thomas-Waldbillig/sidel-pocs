@@ -1,32 +1,13 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  Provider,
-  ValueProvider,
-  inject,
-} from '@angular/core';
-import { WidgetData } from '../../../models';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   BASE_WIDGET,
   BaseWidget,
+  BaseWidgetConfig,
   RESIZABLE_WIDGET,
   ResizableWidget,
-  ResizableWidgetConfig,
+  WidgetPosition,
 } from '../../behaviors';
-
-const baseWidget: Provider = {
-  provide: BASE_WIDGET,
-  useValue: null,
-  multi: true,
-};
-
-const resizableConfig: ValueProvider = {
-  provide: RESIZABLE_WIDGET,
-  useValue: { answer: 42 } as ResizableWidgetConfig,
-  multi: true,
-};
 
 @Component({
   selector: 'sp-widget-one',
@@ -34,15 +15,24 @@ const resizableConfig: ValueProvider = {
   imports: [CommonModule],
   template: `
     <p>widget-one works!</p>
-    <pre>{{ data | json }}</pre>
+    <pre>{{ widgetConfig.data | json }}</pre>
   `,
   styleUrls: ['./widget-one.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [baseWidget, resizableConfig],
+  providers: [
+    { provide: BASE_WIDGET, useExisting: WidgetOneComponent },
+    { provide: RESIZABLE_WIDGET, useExisting: WidgetOneComponent },
+  ],
 })
 export class WidgetOneComponent implements BaseWidget, ResizableWidget {
-  public resizableConfig = inject(RESIZABLE_WIDGET);
+  @Input({ required: true })
+  public widgetConfig!: BaseWidgetConfig;
 
-  @Input()
-  public data!: WidgetData;
+  public updateSize(position: WidgetPosition): void {
+    this.widgetConfig.position = position;
+  }
+
+  public resetSize(): void {
+    // TODO
+  }
 }

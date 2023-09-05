@@ -3,15 +3,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  ElementRef,
   HostBinding,
-  Input,
-  OnInit,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Widget } from '../../models';
-import { WidgetDirective } from '../../shared/directives/widget.directive';
-import { WidgetOneComponent, WidgetTwoComponent } from '../widgets';
+import {
+  BASE_WIDGET,
+  BaseWidget,
+  RESIZABLE_WIDGET,
+  ResizableWidget,
+  WidgetPosition,
+} from '../behaviors';
+import { WidgetOneComponent } from '../widgets';
 
 @Component({
   selector: 'sp-widget-wrapper',
@@ -20,7 +24,7 @@ import { WidgetOneComponent, WidgetTwoComponent } from '../widgets';
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ widget.label }}</mat-card-title>
+        <mat-card-title>{{ baseWidget.widgetConfig.label }}</mat-card-title>
         <mat-card-subtitle>subtitle</mat-card-subtitle>
       </mat-card-header>
 
@@ -36,40 +40,37 @@ import { WidgetOneComponent, WidgetTwoComponent } from '../widgets';
   styleUrls: ['./widget-wrapper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WidgetWrapperComponent implements OnInit {
+export class WidgetWrapperComponent {
   // DEPENDENCY INJECTIONS
 
   // ...
 
   // VARIABLES
 
+  protected get position(): WidgetPosition {
+    return this.baseWidget.widgetConfig.position;
+  }
+
   @HostBinding('style.--height-span')
   protected get heightSpan(): number {
-    return this.widget.position.height;
+    return this.position.height;
   }
 
   @HostBinding('style.--width-span')
   protected get widthSpan(): number {
-    return this.widget.position.width;
+    return this.position.width;
   }
 
-  @Input({ required: true })
-  public widget!: Widget;
+  @ContentChild(WidgetOneComponent)
+  public childComponent!: ElementRef<WidgetOneComponent>;
 
-  // @ContentChild(RESIZABLE_WIDGET, { static: true })
-  @ContentChild(WidgetOneComponent, { static: true })
-  public test1!: WidgetDirective;
+  @ContentChild(BASE_WIDGET)
+  public baseWidget!: BaseWidget;
 
-  @ContentChild(WidgetTwoComponent, { static: true })
-  public test2!: WidgetDirective;
+  @ContentChild(RESIZABLE_WIDGET)
+  public resizeConfig!: ResizableWidget;
 
   // LIFECYCLE HOOKS
 
   // ...
-
-  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  public ngOnInit(): void {
-    console.log(this.test1);
-    console.log(this.test2);
-  }
 }

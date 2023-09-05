@@ -5,22 +5,25 @@ import {
   ViewContainerRef,
   inject,
 } from '@angular/core';
+import { BaseWidgetConfig, WidgetType } from '../../dashboard-page';
 import * as Widgets from '../../dashboard-page/widgets';
-import { Widget } from '../../models';
 
 @Directive({ selector: '[spWidget]', standalone: true })
 export class WidgetDirective {
   private viewContainerRef = inject(ViewContainerRef);
 
   @Input()
-  public set spWidget(value: Widget) {
+  public set spWidget({
+    type,
+    ...data
+  }: BaseWidgetConfig & { type: WidgetType }) {
     this.viewContainerRef.clear();
     const component: ComponentRef<Widgets.WidgetComponent> =
-      this.viewContainerRef.createComponent(this.getComponentClass(value), {});
-    component.instance.data = value.data;
+      this.viewContainerRef.createComponent(this.getComponentClass(type), {});
+    component.instance.widgetConfig = data;
   }
 
-  private getComponentClass({ type }: Widget): Widgets.WidgetComponentClass {
+  private getComponentClass(type: WidgetType): Widgets.WidgetComponentClass {
     switch (type) {
       case 'widget-one':
         return Widgets.WidgetOneComponent;

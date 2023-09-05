@@ -1,6 +1,6 @@
-import { Widget } from '../../models';
+import { BaseWidgetConfig, WidgetType } from '../behaviors';
 
-export const widgetData: Widget[] = [
+export const widgetData: (BaseWidgetConfig & { type: WidgetType })[] = [
   {
     type: 'widget-one',
     label: 'label 01',

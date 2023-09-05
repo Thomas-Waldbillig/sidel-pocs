@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as Widgets from '../../dashboard-page/widgets';
-import { Widget } from '../../models';
+import * as Widgets from '../../dashboard-page';
 
 @Pipe({ name: 'widgetComponent', standalone: true })
 export class WidgetComponentPipe implements PipeTransform {
-  public transform({ type }: Widget): Widgets.WidgetComponentClass {
+  public transform(type: Widgets.WidgetType): Widgets.WidgetComponentClass {
     switch (type) {
       case 'widget-one':
         return Widgets.WidgetOneComponent;

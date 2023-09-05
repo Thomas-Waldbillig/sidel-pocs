@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { WidgetData } from '../../../models';
+import { BASE_WIDGET, BaseWidget, BaseWidgetConfig } from '../../behaviors';
 
 @Component({
   selector: 'sp-widget-four',
@@ -8,12 +8,16 @@ import { WidgetData } from '../../../models';
   imports: [CommonModule],
   template: `
     <p>widget-four works!</p>
-    <pre>{{ data | json }}</pre>
+    <pre>{{ widgetConfig.data | json }}</pre>
   `,
   styleUrls: ['./widget-four.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    { provide: BASE_WIDGET, useExisting: WidgetFourComponent },
+    // { provide: RESIZABLE_WIDGET, useExisting: WidgetFourComponent },
+  ],
 })
-export class WidgetFourComponent {
-  @Input()
-  public data!: WidgetData;
+export class WidgetFourComponent implements BaseWidget {
+  @Input({ required: true })
+  public widgetConfig!: BaseWidgetConfig;
 }
