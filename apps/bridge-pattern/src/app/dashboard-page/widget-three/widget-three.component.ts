@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'sidel-pocs-widget-three',
+  selector: 'sp-widget-three',
   standalone: true,
   imports: [CommonModule],
   template: `<p>widget-three works!</p>`,

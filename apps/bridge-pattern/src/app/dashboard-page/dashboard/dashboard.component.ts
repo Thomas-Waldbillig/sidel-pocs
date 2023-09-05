@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'sidel-pocs-dashboard',
+  selector: 'sp-dashboard',
   standalone: true,
   imports: [CommonModule],
   template: `<p>dashboard works!</p>`,

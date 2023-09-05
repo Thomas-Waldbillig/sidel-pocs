@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'sidel-pocs-widget-header',
+  selector: 'sp-widget-header',
   standalone: true,
   imports: [CommonModule],
   template: `<p>widget-header works!</p>`,

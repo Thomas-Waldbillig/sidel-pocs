@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'sidel-pocs-layout',
+  selector: 'sp-layout',
   standalone: true,
   imports: [
     CommonModule,

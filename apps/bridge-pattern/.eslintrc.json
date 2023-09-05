@@ -12,7 +12,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "sidelPocs",
+            "prefix": "sp",
             "style": "camelCase"
           }
         ],
@@ -20,7 +20,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "sidel-pocs",
+            "prefix": "sp",
             "style": "kebab-case"
           }
         ]

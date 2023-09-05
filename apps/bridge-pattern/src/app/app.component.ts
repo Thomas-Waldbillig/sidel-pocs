@@ -5,7 +5,7 @@ import { LayoutComponent } from './shared/layout/layout.component';
 @Component({
   standalone: true,
   imports: [RouterModule, LayoutComponent],
-  selector: 'sidel-pocs-root',
+  selector: 'sp-root',
   template: ` <router-outlet /> `,
   styleUrls: ['./app.component.scss'],
 })

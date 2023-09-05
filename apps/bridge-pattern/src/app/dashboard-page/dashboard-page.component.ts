@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'sidel-pocs-dashboard-page',
+  selector: 'sp-dashboard-page',
   standalone: true,
   imports: [CommonModule],
-  template: `<p>dashboard-page works!</p>`,
+  template: ``,
   styleUrls: ['./dashboard-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
