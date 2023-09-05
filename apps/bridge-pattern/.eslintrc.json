@@ -31,7 +31,10 @@
         "prefer-rest-params": ["error"],
         "prefer-spread": ["error"],
         "prefer-template": ["error"],
-        "@typescript-eslint/explicit-member-accessibility": "error"
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          { "overrides": { "constructors": "off" } }
+        ]
       },
       "extends": [
         "plugin:@nx/angular",
