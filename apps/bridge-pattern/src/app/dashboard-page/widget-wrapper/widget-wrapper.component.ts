@@ -3,24 +3,22 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ElementRef,
   HostBinding,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {
   BASE_WIDGET,
   BaseWidget,
-  RESIZABLE_WIDGET,
-  ResizableWidget,
+  RESIZABLE,
+  Resizable,
   WidgetPosition,
+  WidgetResizeControlsComponent,
 } from '../behaviors';
-import { WidgetOneComponent } from '../widgets';
 
 @Component({
   selector: 'sp-widget-wrapper',
   standalone: true,
-  imports: [WidgetOneComponent, CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, WidgetResizeControlsComponent],
   template: `
     <mat-card>
       <mat-card-header>
@@ -33,7 +31,11 @@ import { WidgetOneComponent } from '../widgets';
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-raised-button color="primary">Ok</button>
+        <sp-widget-resize-controls
+          *ngIf="resizable"
+          [position]="position"
+          (sizeUpdated)="position = $event"
+        />
       </mat-card-actions>
     </mat-card>
   `,
@@ -47,10 +49,6 @@ export class WidgetWrapperComponent {
 
   // VARIABLES
 
-  protected get position(): WidgetPosition {
-    return this.baseWidget.widgetConfig.position;
-  }
-
   @HostBinding('style.--height-span')
   protected get heightSpan(): number {
     return this.position.height;
@@ -61,14 +59,18 @@ export class WidgetWrapperComponent {
     return this.position.width;
   }
 
-  @ContentChild(WidgetOneComponent)
-  public childComponent!: ElementRef<WidgetOneComponent>;
-
   @ContentChild(BASE_WIDGET)
   public baseWidget!: BaseWidget;
 
-  @ContentChild(RESIZABLE_WIDGET)
-  public resizeConfig!: ResizableWidget;
+  @ContentChild(RESIZABLE)
+  public resizable!: Resizable;
+
+  protected get position(): WidgetPosition {
+    return this.baseWidget.widgetConfig.position;
+  }
+  protected set position(position: WidgetPosition) {
+    this.resizable.updateSize(position);
+  }
 
   // LIFECYCLE HOOKS
 

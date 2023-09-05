@@ -4,8 +4,8 @@ import {
   BASE_WIDGET,
   BaseWidget,
   BaseWidgetConfig,
-  RESIZABLE_WIDGET,
-  ResizableWidget,
+  RESIZABLE,
+  Resizable,
   WidgetPosition,
 } from '../../behaviors';
 
@@ -21,10 +21,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BASE_WIDGET, useExisting: WidgetThreeComponent },
-    { provide: RESIZABLE_WIDGET, useExisting: WidgetThreeComponent },
+    { provide: RESIZABLE, useExisting: WidgetThreeComponent },
   ],
 })
-export class WidgetThreeComponent implements BaseWidget, ResizableWidget {
+export class WidgetThreeComponent implements BaseWidget, Resizable {
   @Input({ required: true })
   public widgetConfig!: BaseWidgetConfig;
 
