@@ -3,23 +3,21 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
-  ElementRef,
   HostBinding,
   Input,
+  OnInit,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Widget } from '../../models';
-import { RESIZABLE_WIDGET } from '../behaviors';
-import { WidgetOneComponent } from '../widgets';
+import { WidgetDirective } from '../../shared/directives/widget.directive';
+import { WidgetOneComponent, WidgetTwoComponent } from '../widgets';
 
 @Component({
   selector: 'sp-widget-wrapper',
   standalone: true,
   imports: [WidgetOneComponent, CommonModule, MatCardModule, MatButtonModule],
   template: `
-    <div *ngIf="resizableWidget">asd</div>
-
     <mat-card>
       <mat-card-header>
         <mat-card-title>{{ widget.label }}</mat-card-title>
@@ -38,7 +36,7 @@ import { WidgetOneComponent } from '../widgets';
   styleUrls: ['./widget-wrapper.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WidgetWrapperComponent {
+export class WidgetWrapperComponent implements OnInit {
   // DEPENDENCY INJECTIONS
 
   // ...
@@ -58,11 +56,20 @@ export class WidgetWrapperComponent {
   @Input({ required: true })
   public widget!: Widget;
 
-  // @ContentChild(WidgetOneComponent)
-  @ContentChild(RESIZABLE_WIDGET)
-  public resizableWidget!: ElementRef<HTMLElement>;
+  // @ContentChild(RESIZABLE_WIDGET, { static: true })
+  @ContentChild(WidgetOneComponent, { static: true })
+  public test1!: WidgetDirective;
+
+  @ContentChild(WidgetTwoComponent, { static: true })
+  public test2!: WidgetDirective;
 
   // LIFECYCLE HOOKS
 
   // ...
+
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+  public ngOnInit(): void {
+    console.log(this.test1);
+    console.log(this.test2);
+  }
 }

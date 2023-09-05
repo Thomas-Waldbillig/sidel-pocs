@@ -16,9 +16,7 @@ export class WidgetDirective {
   public set spWidget(value: Widget) {
     this.viewContainerRef.clear();
     const component: ComponentRef<Widgets.WidgetComponent> =
-      this.viewContainerRef.createComponent(this.getComponentClass(value), {
-        injector: this.viewContainerRef.injector,
-      });
+      this.viewContainerRef.createComponent(this.getComponentClass(value), {});
     component.instance.data = value.data;
   }
 
