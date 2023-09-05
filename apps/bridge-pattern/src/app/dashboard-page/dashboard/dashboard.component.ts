@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Widget } from '../../models';
 import { WidgetDirective } from '../../shared/directives/widget.directive';
+import { WidgetComponentPipe } from '../../shared/pipes';
 import { WidgetWrapperComponent } from '../widget-wrapper/widget-wrapper.component';
-import { WidgetOneComponent } from '../widgets';
 import { widgetData } from './dashboard.data';
 
 @Component({
@@ -12,7 +12,7 @@ import { widgetData } from './dashboard.data';
   imports: [
     CommonModule,
     WidgetWrapperComponent,
-    WidgetOneComponent,
+    WidgetComponentPipe,
     WidgetDirective,
   ],
   template: `
@@ -22,6 +22,9 @@ import { widgetData } from './dashboard.data';
       <ng-container *ngFor="let widget of widgets">
         <sp-widget-wrapper class="widget" [widget]="widget">
           <ng-template [spWidget]="widget" />
+
+          <!-- NO DATA -->
+          <!-- <ng-container *ngComponentOutlet="widget | widgetComponent" /> -->
         </sp-widget-wrapper>
       </ng-container>
     </div>

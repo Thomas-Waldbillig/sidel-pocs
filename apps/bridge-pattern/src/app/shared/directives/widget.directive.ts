@@ -1,4 +1,10 @@
-import { Directive, Input, ViewContainerRef, inject } from '@angular/core';
+import {
+  ComponentRef,
+  Directive,
+  Input,
+  ViewContainerRef,
+  inject,
+} from '@angular/core';
 import * as Widgets from '../../dashboard-page/widgets';
 import { Widget } from '../../models';
 
@@ -8,13 +14,15 @@ export class WidgetDirective {
 
   @Input()
   public set spWidget(value: Widget) {
-    const component = this.viewContainerRef.createComponent(
-      this.getComponentClass(value)
-    );
+    this.viewContainerRef.clear();
+    const component: ComponentRef<Widgets.WidgetComponent> =
+      this.viewContainerRef.createComponent(this.getComponentClass(value), {
+        injector: this.viewContainerRef.injector,
+      });
     component.instance.data = value.data;
   }
 
-  private getComponentClass({ type }: Widget) {
+  private getComponentClass({ type }: Widget): Widgets.WidgetComponentClass {
     switch (type) {
       case 'widget-one':
         return Widgets.WidgetOneComponent;
