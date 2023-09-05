@@ -1,18 +1,13 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   BASE_WIDGET,
   BaseWidget,
   BaseWidgetConfig,
-  RESIZABLE,
-  Resizable,
-  WidgetPosition,
+  DefaultResizeStrategy,
+  RESIZABLE_WIDGET,
+  ResizableWidget,
+  ResizeStrategy,
 } from '../../behaviors';
 
 @Component({
@@ -28,21 +23,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BASE_WIDGET, useExisting: WidgetOneComponent },
-    { provide: RESIZABLE, useExisting: WidgetOneComponent },
+    { provide: RESIZABLE_WIDGET, useExisting: WidgetOneComponent },
   ],
 })
-export class WidgetOneComponent implements BaseWidget, Resizable {
-  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+export class WidgetOneComponent implements BaseWidget, ResizableWidget {
+  public readonly resizeStrategy: ResizeStrategy = new DefaultResizeStrategy();
 
   @Input({ required: true })
   public widgetConfig!: BaseWidgetConfig;
-
-  public updateSize(position: WidgetPosition): void {
-    this.widgetConfig.position = position;
-    this.changeDetectorRef.markForCheck();
-  }
-
-  public resetSize(): void {
-    // TODO
-  }
 }

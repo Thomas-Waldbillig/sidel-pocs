@@ -9,8 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import {
   BASE_WIDGET,
   BaseWidget,
-  RESIZABLE,
-  Resizable,
+  RESIZABLE_WIDGET,
+  ResizableWidget,
   WidgetPosition,
   WidgetResizeControlsComponent,
 } from '../behaviors';
@@ -32,9 +32,9 @@ import {
 
       <mat-card-actions align="end">
         <sp-widget-resize-controls
-          *ngIf="resizable"
+          *ngIf="resizableWidget"
           [position]="position"
-          (sizeUpdated)="position = $event"
+          [strategy]="resizableWidget.resizeStrategy"
         />
       </mat-card-actions>
     </mat-card>
@@ -62,14 +62,11 @@ export class WidgetWrapperComponent {
   @ContentChild(BASE_WIDGET)
   public baseWidget!: BaseWidget;
 
-  @ContentChild(RESIZABLE)
-  public resizable!: Resizable;
+  @ContentChild(RESIZABLE_WIDGET)
+  public resizableWidget!: ResizableWidget;
 
   protected get position(): WidgetPosition {
     return this.baseWidget.widgetConfig.position;
-  }
-  protected set position(position: WidgetPosition) {
-    this.resizable.updateSize(position);
   }
 
   // LIFECYCLE HOOKS

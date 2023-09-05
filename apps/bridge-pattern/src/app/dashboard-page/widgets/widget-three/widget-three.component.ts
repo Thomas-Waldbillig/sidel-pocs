@@ -4,9 +4,10 @@ import {
   BASE_WIDGET,
   BaseWidget,
   BaseWidgetConfig,
-  RESIZABLE,
-  Resizable,
-  WidgetPosition,
+  RESIZABLE_WIDGET,
+  ResizableWidget,
+  ResizeStrategy,
+  SmallWidgetResizeStrategy,
 } from '../../behaviors';
 
 @Component({
@@ -21,18 +22,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BASE_WIDGET, useExisting: WidgetThreeComponent },
-    { provide: RESIZABLE, useExisting: WidgetThreeComponent },
+    { provide: RESIZABLE_WIDGET, useExisting: WidgetThreeComponent },
   ],
 })
-export class WidgetThreeComponent implements BaseWidget, Resizable {
+export class WidgetThreeComponent implements BaseWidget, ResizableWidget {
+  public readonly resizeStrategy: ResizeStrategy =
+    new SmallWidgetResizeStrategy();
+
   @Input({ required: true })
   public widgetConfig!: BaseWidgetConfig;
-
-  public updateSize(position: WidgetPosition) {
-    this.widgetConfig.position = position;
-  }
-
-  public resetSize() {
-    // TODO
-  }
 }
