@@ -23,7 +23,15 @@
             "prefix": "sp",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "prefer-arrow-callback": ["error"],
+        "prefer-const": ["error"],
+        "prefer-destructuring": ["error"],
+        "prefer-promise-reject-errors": ["error"],
+        "prefer-rest-params": ["error"],
+        "prefer-spread": ["error"],
+        "prefer-template": ["error"],
+        "@typescript-eslint/explicit-member-accessibility": "error"
       },
       "extends": [
         "plugin:@nx/angular",
