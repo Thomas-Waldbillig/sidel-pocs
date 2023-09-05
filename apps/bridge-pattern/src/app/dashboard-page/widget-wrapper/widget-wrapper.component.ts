@@ -69,19 +69,23 @@ export class WidgetWrapperComponent implements OnInit {
   public ngOnInit(): void {
     // TODO: move to a service
     this.widgetContainerRef.clear();
-    switch (this.widget.type) {
+    const component = this.widgetContainerRef.createComponent(
+      this.getComponentClass(this.widget)
+    );
+    component.instance.data = this.widget.data;
+  }
+
+  // OTHER
+  private getComponentClass({ type }: Widget) {
+    switch (type) {
       case 'widget-one':
-        this.widgetContainerRef.createComponent(WidgetOneComponent);
-        break;
+        return WidgetOneComponent;
       case 'widget-two':
-        this.widgetContainerRef.createComponent(WidgetTwoComponent);
-        break;
+        return WidgetTwoComponent;
       case 'widget-three':
-        this.widgetContainerRef.createComponent(WidgetThreeComponent);
-        break;
+        return WidgetThreeComponent;
       case 'widget-four':
-        this.widgetContainerRef.createComponent(WidgetFourComponent);
-        break;
+        return WidgetFourComponent;
       default:
         throw new Error('Invalid widget type');
     }
