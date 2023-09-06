@@ -6,7 +6,12 @@ export const appRoutes: Route[] = [
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: '**', loadComponent: () => import('./dashboard-page') }],
+    children: [
+      {
+        path: '**',
+        loadComponent: () => import('@sidel-pocs/feature-dashboard'),
+      },
+    ],
   },
   { path: '**', redirectTo: 'dashboard' },
 ];

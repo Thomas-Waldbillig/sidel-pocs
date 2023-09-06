@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { WidgetDirective } from '../../shared/directives/widget.directive';
-import { WidgetComponentPipe } from '../../shared/pipes';
 import { BaseWidget, WidgetType } from '../traits';
 import { WidgetWrapperComponent } from '../widget-wrapper/widget-wrapper.component';
 import {
@@ -18,8 +16,8 @@ import { widgetData } from './dashboard.data';
   imports: [
     CommonModule,
     WidgetWrapperComponent,
-    WidgetComponentPipe,
-    WidgetDirective,
+    // WidgetComponentPipe,
+    // WidgetDirective,
     WidgetOneComponent,
     WidgetTwoComponent,
     WidgetThreeComponent,

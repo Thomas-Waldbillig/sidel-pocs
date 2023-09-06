@@ -5,8 +5,8 @@ import {
   ViewContainerRef,
   inject,
 } from '@angular/core';
-import { BaseWidget, WidgetType } from '../../dashboard-page';
-import * as Widgets from '../../dashboard-page/widgets';
+import { BaseWidget, WidgetType } from '../traits';
+import * as Widgets from '../widgets';
 
 @Directive({ selector: '[spWidget]', standalone: true })
 export class WidgetDirective {

@@ -1,3 +1,3 @@
-export * from './lib/lib.routes';
-
-export * from './lib/feature-dashboard/feature-dashboard.component';
+export { DashboardPageComponent as default } from './lib/dashboard-page.component';
+export * from './lib/traits';
+export * from './lib/widgets';
