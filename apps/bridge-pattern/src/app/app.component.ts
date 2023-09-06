@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LayoutComponent } from './shared/layout/layout.component';
+import { LayoutComponent } from '@sidel-pocs/ui-components';
 
 @Component({
   standalone: true,

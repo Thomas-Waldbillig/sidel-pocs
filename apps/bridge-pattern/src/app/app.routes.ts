@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { LayoutComponent } from './shared/layout/layout.component';
+import { LayoutComponent } from '@sidel-pocs/ui-components';
 
 export const appRoutes: Route[] = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
