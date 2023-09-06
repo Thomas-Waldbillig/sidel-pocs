@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { ResizeStrategy, WidgetPosition } from '../../behaviors';
+import { ResizeStrategy, WidgetPosition } from '../../traits';
 
 @Component({
   selector: 'sp-widget-resize-controls',

@@ -1,4 +1,4 @@
-import { BaseWidget, WidgetType } from '../behaviors';
+import { BaseWidget, WidgetType } from '../traits';
 
 export const widgetData: (BaseWidget & { type: WidgetType })[] = [
   {

@@ -8,7 +8,7 @@ import {
   ResizableWidget,
   ResizeStrategy,
   WidgetPosition,
-} from '../../behaviors';
+} from '../../traits';
 
 @Component({
   selector: 'sp-widget-one',

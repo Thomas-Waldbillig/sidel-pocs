@@ -1,5 +1,4 @@
-import { InjectionToken } from '@angular/core';
-import { WidgetPosition } from './base.behavior';
+import { WidgetPosition } from './base.trait';
 
 export interface ResizeStrategy {
   minHeight: number;
@@ -73,18 +72,3 @@ export class SmallWidgetResizeStrategy extends AbstractResizeStrategy {
   public readonly minWidth = 1;
   public readonly maxWidth = 2;
 }
-
-// ████████╗ ██████╗ ██╗  ██╗███████╗███╗   ██╗███████╗
-// ╚══██╔══╝██╔═══██╗██║ ██╔╝██╔════╝████╗  ██║██╔════╝
-//    ██║   ██║   ██║█████╔╝ █████╗  ██╔██╗ ██║███████╗
-//    ██║   ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╗██║╚════██║
-//    ██║   ╚██████╔╝██║  ██╗███████╗██║ ╚████║███████║
-//    ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚══════╝
-
-export interface ResizableWidget {
-  resizeStrategy: ResizeStrategy;
-}
-
-export const RESIZABLE_WIDGET = new InjectionToken<ResizableWidget>(
-  'RESIZE_STRATEGY'
-);

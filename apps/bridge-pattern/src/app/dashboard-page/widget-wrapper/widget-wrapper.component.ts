@@ -7,20 +7,28 @@ import {
   HostBinding,
   inject,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {
   BASE_WIDGET,
   BaseWidget,
+  REFRESHABLE_WIDGET,
   RESIZABLE_WIDGET,
+  RefreshableWidget,
   ResizableWidget,
   WidgetPosition,
-} from '../behaviors';
+} from '../traits';
 import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-resize-controls.component';
 
 @Component({
   selector: 'sp-widget-wrapper',
   standalone: true,
-  imports: [CommonModule, MatCardModule, WidgetResizeControlsComponent],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    WidgetResizeControlsComponent,
+  ],
   template: `
     <mat-card>
       <mat-card-header>
@@ -39,6 +47,14 @@ import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-r
           [strategy]="resizableWidget.resizeStrategy"
           (positionUpdated)="baseWidget.position = $event"
         />
+        <button
+          *ngIf="refreshableWidget?.refreshStrategy as strategy"
+          mat-raised-button
+          color="accent"
+          (click)="strategy.refresh()"
+        >
+          text
+        </button>
       </mat-card-actions>
     </mat-card>
   `,
@@ -67,6 +83,9 @@ export class WidgetWrapperComponent {
 
   @ContentChild(RESIZABLE_WIDGET)
   public resizableWidget!: ResizableWidget;
+
+  @ContentChild(REFRESHABLE_WIDGET)
+  public refreshableWidget!: RefreshableWidget;
 
   protected get position(): WidgetPosition {
     return this.baseWidget.position;

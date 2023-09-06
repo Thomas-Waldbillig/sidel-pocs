@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { BASE_WIDGET, BaseWidget, WidgetPosition } from '../../behaviors';
+import { BASE_WIDGET, BaseWidget, WidgetPosition } from '../../traits';
 
 @Component({
   selector: 'sp-widget-four',
