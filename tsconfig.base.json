@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@sidel-pocs/feature-dashboard": ["libs/feature-dashboard/src/index.ts"]
+      "@sidel-pocs/feature-dashboard": ["libs/feature-dashboard/src/index.ts"],
+      "@sidel-pocs/utilitities": ["libs/utilitities/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
