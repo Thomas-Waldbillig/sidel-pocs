@@ -1,14 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import {
-  BASE_WIDGET,
-  BaseWidget,
-  BaseWidgetConfig,
-  DefaultResizeStrategy,
-  RESIZABLE_WIDGET,
-  ResizableWidget,
-  ResizeStrategy,
-} from '../../behaviors';
+import { BASE_WIDGET, BaseWidget, BaseWidgetConfig } from '../../behaviors';
 
 @Component({
   selector: 'sp-widget-four',
@@ -22,11 +14,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: BASE_WIDGET, useExisting: WidgetFourComponent },
-    { provide: RESIZABLE_WIDGET, useExisting: WidgetFourComponent },
+    // { provide: RESIZABLE_WIDGET, useExisting: WidgetFourComponent },
   ],
 })
-export class WidgetFourComponent implements BaseWidget, ResizableWidget {
-  public readonly resizeStrategy: ResizeStrategy = new DefaultResizeStrategy();
+export class WidgetFourComponent implements BaseWidget /* ResizableWidget */ {
+  // public readonly resizeStrategy: ResizeStrategy = new DefaultResizeStrategy();
 
   @Input({ required: true })
   public widgetConfig!: BaseWidgetConfig;

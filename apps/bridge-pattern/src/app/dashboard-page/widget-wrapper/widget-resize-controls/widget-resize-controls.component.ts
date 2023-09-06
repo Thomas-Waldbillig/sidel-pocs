@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { WidgetPosition } from '../../base.behavior';
-import { ResizeStrategy } from '../resizable.behavior';
+import { WidgetPosition } from '../../behaviors/base.behavior';
+import { ResizeStrategy } from '../../behaviors/resizable.behavior';
 
 @Component({
   selector: 'sp-widget-resize-controls',

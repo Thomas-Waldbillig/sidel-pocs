@@ -12,8 +12,8 @@ import {
   RESIZABLE_WIDGET,
   ResizableWidget,
   WidgetPosition,
-  WidgetResizeControlsComponent,
 } from '../behaviors';
+import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-resize-controls.component';
 
 @Component({
   selector: 'sp-widget-wrapper',

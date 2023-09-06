@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { WidgetPosition } from '../base.behavior';
+import { WidgetPosition } from './base.behavior';
 
 export interface ResizeStrategy {
   minHeight: number;

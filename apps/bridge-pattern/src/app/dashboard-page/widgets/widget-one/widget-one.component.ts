@@ -4,10 +4,10 @@ import {
   BASE_WIDGET,
   BaseWidget,
   BaseWidgetConfig,
-  DefaultResizeStrategy,
   RESIZABLE_WIDGET,
   ResizableWidget,
   ResizeStrategy,
+  SmallWidgetResizeStrategy,
 } from '../../behaviors';
 
 @Component({
@@ -27,7 +27,8 @@ import {
   ],
 })
 export class WidgetOneComponent implements BaseWidget, ResizableWidget {
-  public readonly resizeStrategy: ResizeStrategy = new DefaultResizeStrategy();
+  public readonly resizeStrategy: ResizeStrategy =
+    new SmallWidgetResizeStrategy();
 
   @Input({ required: true })
   public widgetConfig!: BaseWidgetConfig;
