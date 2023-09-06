@@ -22,7 +22,7 @@ import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-r
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ baseWidget.widgetConfig.label }}</mat-card-title>
+        <mat-card-title>{{ baseWidget.label }}</mat-card-title>
         <mat-card-subtitle>subtitle</mat-card-subtitle>
       </mat-card-header>
 
@@ -66,7 +66,7 @@ export class WidgetWrapperComponent {
   public resizableWidget!: ResizableWidget;
 
   protected get position(): WidgetPosition {
-    return this.baseWidget.widgetConfig.position;
+    return this.baseWidget.position;
   }
 
   // LIFECYCLE HOOKS

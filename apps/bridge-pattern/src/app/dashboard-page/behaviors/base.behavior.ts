@@ -13,14 +13,10 @@ export interface WidgetPosition {
   width: number;
 }
 
-export interface BaseWidgetConfig {
+export interface BaseWidget {
   label: string;
   position: WidgetPosition;
   data: WidgetData;
-}
-
-export interface BaseWidget {
-  widgetConfig: BaseWidgetConfig;
 }
 
 export const BASE_WIDGET = new InjectionToken<BaseWidget>('BASE_WIDGET');

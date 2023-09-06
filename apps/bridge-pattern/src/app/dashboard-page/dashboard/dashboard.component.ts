@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { WidgetDirective } from '../../shared/directives/widget.directive';
 import { WidgetComponentPipe } from '../../shared/pipes';
-import { BaseWidgetConfig, WidgetType } from '../behaviors';
+import { BaseWidget, WidgetType } from '../behaviors';
 import { WidgetWrapperComponent } from '../widget-wrapper/widget-wrapper.component';
 import {
   WidgetFourComponent,
@@ -30,32 +30,42 @@ import { widgetData } from './dashboard.data';
 
     <div class="widgets">
       <ng-container *ngFor="let widget of widgets">
-        <sp-widget-wrapper class="widget">
-          <!-- <ng-container [spWidget]="widget" /> -->
-          <!-- <ng-template [spWidget]="widget" /> -->
+        <!-- <sp-widget-wrapper class="widget" [ngSwitch]="widget.type">
+        <ng-container [spWidget]="widget" />
+        <ng-template [spWidget]="widget" />
+        <ng-container *ngComponentOutlet="widget | widgetComponent" />
+        </sp-widget-wrapper> -->
 
-          <!-- NO DATA -->
-          <!-- <ng-container *ngComponentOutlet="widget | widgetComponent" /> -->
+        <sp-widget-wrapper class="widget" [ngSwitch]="widget.type">
+          <sp-widget-one
+            *ngSwitchCase="'widget-one'"
+            [label]="widget.label"
+            [position]="widget.position"
+            [data]="widget.data"
+          />
 
-          <ng-container [ngSwitch]="widget.type">
-            <ng-container *ngSwitchCase="'widget-one'">
-              <sp-widget-one [widgetConfig]="widget" />
-            </ng-container>
+          <sp-widget-two
+            *ngSwitchCase="'widget-two'"
+            [label]="widget.label"
+            [position]="widget.position"
+            [data]="widget.data"
+          />
 
-            <ng-container *ngSwitchCase="'widget-two'">
-              <sp-widget-two [widgetConfig]="widget" />
-            </ng-container>
+          <sp-widget-three
+            *ngSwitchCase="'widget-three'"
+            [label]="widget.label"
+            [position]="widget.position"
+            [data]="widget.data"
+          />
 
-            <ng-container *ngSwitchCase="'widget-three'">
-              <sp-widget-three [widgetConfig]="widget" />
-            </ng-container>
+          <sp-widget-four
+            *ngSwitchCase="'widget-four'"
+            [label]="widget.label"
+            [position]="widget.position"
+            [data]="widget.data"
+          />
 
-            <ng-container *ngSwitchCase="'widget-four'">
-              <sp-widget-four [widgetConfig]="widget" />
-            </ng-container>
-
-            <p *ngSwitchDefault>Invalid widget type</p>
-          </ng-container>
+          <p *ngSwitchDefault>Invalid widget type</p>
         </sp-widget-wrapper>
       </ng-container>
     </div>
@@ -64,5 +74,5 @@ import { widgetData } from './dashboard.data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
-  protected widgets: (BaseWidgetConfig & { type: WidgetType })[] = widgetData;
+  protected widgets: (BaseWidget & { type: WidgetType })[] = widgetData;
 }

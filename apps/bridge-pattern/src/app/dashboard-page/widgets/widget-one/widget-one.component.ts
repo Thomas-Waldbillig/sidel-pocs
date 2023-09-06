@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   BASE_WIDGET,
   BaseWidget,
-  BaseWidgetConfig,
   RESIZABLE_WIDGET,
   ResizableWidget,
   ResizeStrategy,
   SmallWidgetResizeStrategy,
+  WidgetPosition,
 } from '../../behaviors';
 
 @Component({
@@ -16,8 +16,8 @@ import {
   imports: [CommonModule],
   template: `
     <header>Widget One</header>
-    <p>{{ widgetConfig.data | json }}</p>
-    <p>{{ widgetConfig.position | json }}</p>
+    <p>{{ data | json }}</p>
+    <p>{{ position | json }}</p>
   `,
   styleUrls: ['./widget-one.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,5 +31,11 @@ export class WidgetOneComponent implements BaseWidget, ResizableWidget {
     new SmallWidgetResizeStrategy();
 
   @Input({ required: true })
-  public widgetConfig!: BaseWidgetConfig;
+  public label!: string;
+
+  @Input({ required: true })
+  public position!: WidgetPosition;
+
+  @Input({ required: true })
+  public data!: unknown;
 }

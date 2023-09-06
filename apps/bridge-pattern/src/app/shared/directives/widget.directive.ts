@@ -5,7 +5,7 @@ import {
   ViewContainerRef,
   inject,
 } from '@angular/core';
-import { BaseWidgetConfig, WidgetType } from '../../dashboard-page';
+import { BaseWidget, WidgetType } from '../../dashboard-page';
 import * as Widgets from '../../dashboard-page/widgets';
 
 @Directive({ selector: '[spWidget]', standalone: true })
@@ -13,14 +13,14 @@ export class WidgetDirective {
   private viewContainerRef = inject(ViewContainerRef);
 
   @Input()
-  public set spWidget({
-    type,
-    ...data
-  }: BaseWidgetConfig & { type: WidgetType }) {
+  public set spWidget(widgetData: BaseWidget & { type: WidgetType }) {
+    const { data, label, position, type } = widgetData;
     this.viewContainerRef.clear();
     const component: ComponentRef<Widgets.WidgetComponent> =
       this.viewContainerRef.createComponent(this.getComponentClass(type), {});
-    component.instance.widgetConfig = data;
+    component.instance.data = data;
+    component.instance.label = label;
+    component.instance.position = position;
   }
 
   private getComponentClass(type: WidgetType): Widgets.WidgetComponentClass {
