@@ -1,1 +1,1 @@
-export * from './lib/utilitities/utilitities.component';
+export * from './lib/pipes';

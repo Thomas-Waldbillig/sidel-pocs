@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { ConstantCasePipe, SnakeCasePipe } from '@sidel-pocs/utilitities';
 import {
   BASE_WIDGET,
   BaseWidget,
@@ -24,16 +25,22 @@ import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-r
   selector: 'sp-widget-wrapper',
   standalone: true,
   imports: [
+    WidgetResizeControlsComponent,
+
+    ConstantCasePipe,
+    SnakeCasePipe,
+
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    WidgetResizeControlsComponent,
   ],
   template: `
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ baseWidget.label }}</mat-card-title>
-        <mat-card-subtitle>subtitle</mat-card-subtitle>
+        <mat-card-title>{{ baseWidget.label | constantCase }}</mat-card-title>
+        <mat-card-subtitle>
+          {{ 'subtitle for the widget' | snakeCase }}
+        </mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
