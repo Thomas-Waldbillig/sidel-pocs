@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@sidel-pocs/feature-dashboard": ["libs/feature-dashboard/src/index.ts"],
+      "@sidel-pocs/ui-components": ["libs/ui-components/src/index.ts"],
       "@sidel-pocs/utilitities": ["libs/utilitities/src/index.ts"]
     }
   },
