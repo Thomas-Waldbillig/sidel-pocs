@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   HostBinding,
+  inject,
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import {
@@ -35,6 +37,7 @@ import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-r
           *ngIf="resizableWidget"
           [position]="position"
           [strategy]="resizableWidget.resizeStrategy"
+          (positionUpdated)="baseWidget.position = $event"
         />
       </mat-card-actions>
     </mat-card>
@@ -45,7 +48,7 @@ import { WidgetResizeControlsComponent } from './widget-resize-controls/widget-r
 export class WidgetWrapperComponent {
   // DEPENDENCY INJECTIONS
 
-  // ...
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
 
   // VARIABLES
 

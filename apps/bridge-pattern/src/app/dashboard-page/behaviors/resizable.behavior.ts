@@ -6,10 +6,10 @@ export interface ResizeStrategy {
   maxHeight: number;
   minWidth: number;
   maxWidth: number;
-  increaseHeight(position: WidgetPosition): void;
-  increaseWidth(position: WidgetPosition): void;
-  decreaseHeight(position: WidgetPosition): void;
-  decreaseWidth(position: WidgetPosition): void;
+  increaseHeight(position: WidgetPosition): WidgetPosition;
+  increaseWidth(position: WidgetPosition): WidgetPosition;
+  decreaseHeight(position: WidgetPosition): WidgetPosition;
+  decreaseWidth(position: WidgetPosition): WidgetPosition;
 }
 
 //  █████╗ ██████╗ ███████╗████████╗██████╗  █████╗  ██████╗████████╗
@@ -25,20 +25,20 @@ abstract class AbstractResizeStrategy implements ResizeStrategy {
   public abstract readonly minWidth: number;
   public abstract readonly maxWidth: number;
 
-  public increaseHeight(position: WidgetPosition): void {
-    position.height = Math.min(this.maxHeight, position.height + 1);
+  public increaseHeight({ height, width }: WidgetPosition): WidgetPosition {
+    return { height: Math.min(this.maxHeight, height + 1), width };
   }
 
-  public increaseWidth(position: WidgetPosition): void {
-    position.width = Math.min(this.maxWidth, position.width + 1);
+  public increaseWidth({ height, width }: WidgetPosition): WidgetPosition {
+    return { height, width: Math.min(this.maxWidth, width + 1) };
   }
 
-  public decreaseHeight(position: WidgetPosition): void {
-    position.height = Math.max(this.minHeight, position.height - 1);
+  public decreaseHeight({ height, width }: WidgetPosition): WidgetPosition {
+    return { height: Math.max(this.minHeight, height - 1), width };
   }
 
-  public decreaseWidth(position: WidgetPosition): void {
-    position.width = Math.max(this.minWidth, position.width - 1);
+  public decreaseWidth({ height, width }: WidgetPosition): WidgetPosition {
+    return { height, width: Math.max(this.minWidth, width - 1) };
   }
 }
 
@@ -52,9 +52,9 @@ abstract class AbstractResizeStrategy implements ResizeStrategy {
 export class DefaultResizeStrategy extends AbstractResizeStrategy {
   constructor(
     public readonly minHeight: number = 1,
-    public readonly maxHeight: number = 4,
+    public readonly maxHeight: number = 6,
     public readonly minWidth: number = 1,
-    public readonly maxWidth: number = 4
+    public readonly maxWidth: number = 6
   ) {
     super();
   }

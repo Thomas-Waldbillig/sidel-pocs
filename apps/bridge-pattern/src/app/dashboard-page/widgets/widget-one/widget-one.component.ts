@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   BASE_WIDGET,
   BaseWidget,
+  DefaultResizeStrategy,
   RESIZABLE_WIDGET,
   ResizableWidget,
   ResizeStrategy,
-  SmallWidgetResizeStrategy,
   WidgetPosition,
 } from '../../behaviors';
 
@@ -27,8 +27,7 @@ import {
   ],
 })
 export class WidgetOneComponent implements BaseWidget, ResizableWidget {
-  public readonly resizeStrategy: ResizeStrategy =
-    new SmallWidgetResizeStrategy();
+  public readonly resizeStrategy: ResizeStrategy = new DefaultResizeStrategy();
 
   @Input({ required: true })
   public label!: string;

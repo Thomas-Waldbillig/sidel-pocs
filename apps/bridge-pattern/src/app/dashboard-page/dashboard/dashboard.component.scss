@@ -10,5 +10,10 @@
     grid-auto-rows: 15rem;
     grid-auto-flow: dense;
     gap: 2rem;
+    transition: 1s all;
+  }
+
+  .widget {
+    transition: 1s all;
   }
 }
