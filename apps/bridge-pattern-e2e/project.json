@@ -8,6 +8,12 @@
       "outputs": ["{workspaceRoot}/dist/.playwright/apps/bridge-pattern-e2e"],
       "options": {
         "config": "apps/bridge-pattern-e2e/playwright.config.ts"
+      },
+      "configurations": {
+        "ui": { "ui": true },
+        "chromium": { "browser": "chromium", "headed": true },
+        "firefox": { "browser": "firefox", "headed": true },
+        "webkit": { "browser": "webkit", "headed": true }
       }
     },
     "lint": {
