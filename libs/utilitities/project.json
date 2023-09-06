@@ -2,7 +2,7 @@
   "name": "utilitities",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/utilitities/src",
-  "prefix": "sidel-pocs",
+  "prefix": "sp",
   "tags": [],
   "projectType": "library",
   "targets": {
